@@ -1,0 +1,25 @@
+# Dependency directories
+node_modules/
+
+# Build output
+dist/
+
+# Local environment files
+.env
+.env.local
+.env.*.local
+
+# IDE-specific files
+.vscode/
+.idea/
+*.iml
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Optional npm cache directory
+.npm/
+
+# Package lock files (if you use Yarn or pnpm, adjust accordingly)
+package-lock.json

@@ -1,0 +1,157 @@
+:root {
+    --primary-color: #d32f2f; /* Đỏ */
+    --secondary-color: #fbc02d; /* Vàng */
+    --bg-light: #f8f9fa;
+    --text-dark: #212529;
+    --bg-dark: #121212;
+    --text-light: #e0e0e0;
+    --card-dark: #1e1e1e;
+}
+
+/* Cài đặt cơ bản & Thanh cuộn mượt */
+html {
+    scroll-behavior: smooth;
+    /* Tránh navbar che mất tiêu đề khi click menu */
+    scroll-padding-top: 76px; 
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: var(--text-dark);
+    background-color: #fff;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden; /* Ngăn thanh cuộn ngang khi hiệu ứng chạy */
+}
+
+/* --- HIỆU ỨNG RIPPLE KHI CLICK --- */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(211, 47, 47, 0.3); /* Màu đỏ nhạt */
+    transform: scale(0);
+    animation: ripple-animation 0.6s linear;
+    pointer-events: none; /* Không chặn click */
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* --- LOADING OVERLAY (Mượt hơn) --- */
+.loading-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+.loading-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* --- NAVBAR & BUTTONS --- */
+.navbar-brand { font-family: 'Noto Sans', sans-serif; }
+.nav-link { font-weight: 500; }
+
+#backToTop {
+    position: fixed;
+    bottom: 30px; right: 30px;
+    display: none;
+    z-index: 1000;
+    border-radius: 50%;
+    width: 50px; height: 50px;
+    transition: transform 0.3s;
+}
+#backToTop:hover { transform: translateY(-5px); }
+
+/* --- ĐỒNG BỘ KÍCH THƯỚC ẢNH --- */
+/* Ảnh trong Card Du lịch/Ẩm thực */
+.card-img-top {
+    width: 100%;
+    height: 260px; /* Chiều cao cố định */
+    object-fit: cover; /* Đảm bảo ảnh không bị méo */
+}
+
+/* Ảnh trong Gallery */
+.gallery-item {
+    width: 100%;
+    height: 300px; /* Gallery hình vuông hoặc chữ nhật đứng */
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+.gallery-item:hover {
+    transform: scale(1.03);
+}
+
+/* --- CARD HOVER EFFECT --- */
+.hover-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+}
+.hover-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 1rem 3rem rgba(0,0,0,.175)!important;
+}
+
+/* --- SCROLL REVEAL ANIMATIONS (QUAN TRỌNG) --- */
+/* Trạng thái ban đầu: Ẩn đi và dịch chuyển */
+.animate-block {
+    opacity: 0;
+    transition: all 0.8s ease-out; /* Thời gian và độ mượt của chuyển động */
+}
+
+/* Điểm xuất phát */
+.from-left { transform: translateX(-100px); }
+.from-right { transform: translateX(100px); }
+.fade-up { transform: translateY(50px); }
+
+/* Trạng thái đích: Khi JS thêm class .visible */
+.animate-block.visible {
+    opacity: 1;
+    transform: translate(0, 0); /* Về vị trí gốc */
+}
+
+
+/* --- DARK MODE --- */
+body.dark-mode {
+    background-color: var(--bg-dark) !important;
+    color: var(--text-light) !important;
+}
+
+body.dark-mode .bg-light, 
+body.dark-mode .timeline-item {
+    background-color: var(--card-dark) !important;
+}
+
+body.dark-mode .card {
+    background-color: var(--card-dark);
+    border-color: #333;
+}
+
+body.dark-mode .text-danger {
+    color: #ff6659 !important; /* Màu đỏ sáng hơn cho nền tối */
+}
+body.dark-mode .section-title {
+     color: var(--secondary-color) !important;
+}
+
+body.dark-mode .navbar {
+    background-color: #1a1a1a !important; /* Navbar tối hơn chút */
+}
+body.dark-mode p, body.dark-mode li {
+    color: #d0d0d0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card-img-top, .gallery-item { height: 200px; }
+    #backToTop { bottom: 20px; right: 20px; }
+}
